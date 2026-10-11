@@ -1,0 +1,77 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  }
+
+  body {
+    background-color: #060813;
+    color: #F8FAFC;
+    overflow-x: hidden;
+    min-height: 100vh;
+  }
+
+  /* Accessible focus rings */
+  *:focus-visible {
+    outline: 2px solid #38BDF8;
+    outline-offset: 2px;
+  }
+}
+
+/* Glassmorphic utilities with solid fallback */
+@layer components {
+  /* Selective Frosted Glass Card */
+  .glass-card {
+    background-color: #0F1526; /* solid fallback */
+    border: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  @supports (backdrop-filter: blur(12px)) or (-webkit-backdrop-filter: blur(12px)) {
+    .glass-card {
+      background-color: rgba(15, 21, 38, 0.65);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+    }
+  }
+
+  /* Frosted Glass Floating Pill */
+  .glass-pill {
+    background-color: #111827; /* solid fallback */
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  @supports (backdrop-filter: blur(12px)) or (-webkit-backdrop-filter: blur(12px)) {
+    .glass-pill {
+      background-color: rgba(17, 24, 39, 0.7);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+    }
+  }
+
+  /* Subtle Ambient Gradient Background Lighting */
+  .ambient-glow-cyan {
+    background: radial-gradient(circle, rgba(56, 189, 248, 0.09) 0%, rgba(56, 189, 248, 0) 70%);
+  }
+
+  .ambient-glow-violet {
+    background: radial-gradient(circle, rgba(139, 92, 246, 0.08) 0%, rgba(139, 92, 246, 0) 70%);
+  }
+
+  .ambient-glow-blue {
+    background: radial-gradient(circle, rgba(59, 130, 246, 0.08) 0%, rgba(59, 130, 246, 0) 70%);
+  }
+}
+
+/* Reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+  *, ::before, ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
